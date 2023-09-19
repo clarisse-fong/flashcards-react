@@ -1,0 +1,6 @@
+/* FORM  */
+form input,
+label,
+textArea {
+  width: 100%;
+}
