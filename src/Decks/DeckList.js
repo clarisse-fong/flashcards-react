@@ -42,9 +42,6 @@ function DeckList() {
         <Link to="decks/new" className="btn btn-secondary">
           + Create Deck
         </Link>
-        <Route path="decks/new">
-          <CreateDeck />
-        </Route>
         {/* //✅TODO: Map over the decks, calling DeckView on each deck */}
         {listOfDecks.length !== 0 &&
           listOfDecks.map((deck) => {
