@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardView from "./CardView";
 
+//child component of Deck screen that lists the card of a given deck
 function CardList({ deck, loadDeck }) {
-  console.log(deck.cards);
-
   const renderCards = () => {
-    console.log(renderCards);
-
     return (
       <div>
         <h1>Cards</h1>
@@ -18,6 +15,7 @@ function CardList({ deck, loadDeck }) {
               cardId={card.id}
               deckId={deck.id}
               loadDeck={loadDeck}
+              key={card.id}
             />
           );
         })}

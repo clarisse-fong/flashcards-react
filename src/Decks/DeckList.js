@@ -19,7 +19,6 @@ function DeckList() {
   };
 
   function deleteHandle(deckId) {
-    console.log("delete");
     const isDeleteConfirmed = window.confirm(
       "Delete this deck? \n\nYou will not be able to recover it."
     );

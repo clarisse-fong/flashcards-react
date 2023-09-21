@@ -26,9 +26,9 @@ function Deck() {
     listDecks().then((data) => setListOfDecks(data));
   };
   useEffect(loadDeck, []);
+  useEffect(doListDecks, []);
 
   const deleteHandle = () => {
-    console.log("delete");
     const isDeleteConfirmed = window.confirm(
       "Delete this deck? \n\nYou will not be able to recover it."
     );
@@ -63,9 +63,9 @@ function Deck() {
       <Link to={`/decks/${currDeck.id}/cards/new`} className="btn btn-primary">
         Add Cards
       </Link>
-      <btn className="btn btn-danger" onClick={deleteHandle}>
+      <button className="btn btn-danger" onClick={deleteHandle}>
         Delete
-      </btn>
+      </button>
       <CardList deck={currDeck} loadDeck={loadDeck} />
     </div>
   );

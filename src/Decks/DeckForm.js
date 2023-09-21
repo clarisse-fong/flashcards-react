@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
-import { createDeck } from "../utils/api";
 
 // CREATE DECK SCREEN
 // path is "/decks/new"
@@ -11,13 +10,7 @@ import { createDeck } from "../utils/api";
 //TODO:✅Direct User to the deck screen of their new study deck
 
 //TODO: ✅Create useState varialbe to keep track of the form input
-function DeckForm({
-  initialFormData,
-  submitHandler,
-  formData,
-  setFormData,
-  pageIfCancel,
-}) {
+function DeckForm({ submitHandler, formData, setFormData, pageIfCancel }) {
   //handles the input by keeping track of the input in a useState variable
   const handleInput = (event) => {
     let newFormData = { ...formData, [event.target.name]: event.target.value };
@@ -37,7 +30,7 @@ function DeckForm({
                 name="name"
                 placeholder="Deck Name"
                 onChange={handleInput}
-                value={formData.name}
+                value={formData.name || ""}
                 required
               ></input>
             </div>
@@ -53,7 +46,7 @@ function DeckForm({
                 placeholder="Brief description of the deck"
                 onChange={handleInput}
                 required
-                value={formData.description}
+                value={formData.description || ""}
               ></textarea>
             </div>
           </label>

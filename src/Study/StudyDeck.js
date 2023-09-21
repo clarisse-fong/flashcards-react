@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import CardView from "./CardView";
 import { readDeck } from "../utils/api";
 import NotEnoughCards from "./NotEnoughCards";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // STUDY SCREEN
 // path is "/decks/:deckId/study"
 
@@ -20,6 +21,7 @@ function Study() {
   const [deckToStudy, setDeckToStudy] = useState([]);
   const [currCardIndex, setCurrCardIndex] = useState(0);
   const [isFront, setisFront] = useState(true);
+  const history = useHistory();
 
   const useReadDeck = () => {
     if (deckToStudy) {
@@ -40,7 +42,10 @@ function Study() {
       );
       if (restart) {
         setCurrCardIndex(0);
+      } else {
+        history.push("/");
       }
+      //if not last card in the deck, then increase the card index and flip the card.
     } else {
       setisFront(!isFront);
       setCurrCardIndex(currCardIndex + 1);
@@ -72,14 +77,14 @@ function Study() {
     return (
       <div>
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
               <Link to="/">Home</Link>
             </li>
-            <li class="breadcrumb-item">
+            <li className="breadcrumb-item">
               <Link to={`/decks/${deckToStudy.id}`}>{deckToStudy.name}</Link>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">
+            <li className="breadcrumb-item active" aria-current="page">
               Study
             </li>
           </ol>

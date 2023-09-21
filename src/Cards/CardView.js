@@ -24,9 +24,9 @@ function CardView({ front, back, deckId, cardId, loadDeck }) {
           >
             Edit
           </Link>
-          <btn onClick={handleDelete} className="btn btn-danger">
+          <button onClick={handleDelete} className="btn btn-danger">
             Delete
-          </btn>
+          </button>
         </div>
       </div>
     </div>

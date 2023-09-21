@@ -21,7 +21,6 @@ function EditDeck() {
   const history = useHistory();
 
   const loadDeckToEdit = () => {
-    console.log("loading");
     readDeck(deckId)
       .then((deck) => {
         setDeckToEdit(deck);
@@ -43,7 +42,7 @@ function EditDeck() {
       ...deckToEdit,
       name: formData.name,
       description: formData.description,
-    }).then(history.push(`/decks/${deckId}`));
+    }).then(() => history.push(`/decks/${deckId}`));
   };
 
   if (deckToEdit.id) {
@@ -55,7 +54,7 @@ function EditDeck() {
               <Link to="/">Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to="#">{deckToEdit.name}</Link>
+              <Link to={`/decks/${deckId}`}>{deckToEdit.name}</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               Data
@@ -67,6 +66,7 @@ function EditDeck() {
           formData={formData}
           setFormData={setFormData}
           submitHandler={submitHandler}
+          pageIfCancel={`/decks/${deckId}`}
         />
       </div>
     );
