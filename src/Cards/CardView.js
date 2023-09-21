@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { deleteCard } from "../utils/api";
 
+//CARDVIEW: creates the format for each card in cardList
+//child component of CardList
 function CardView({ front, back, deckId, cardId, loadDeck }) {
   const handleDelete = () => {
     const isDeleteConfirmed = window.confirm(

@@ -3,8 +3,6 @@ import { useHistory, Link } from "react-router-dom";
 import DeckForm from "./DeckForm";
 import { createDeck } from "../utils/api";
 
-//TODO: create and pass in a cancelHandler function: takes user back to the home screen
-
 function CreateDeck() {
   const history = useHistory();
   let initialFormData = {
@@ -13,11 +11,12 @@ function CreateDeck() {
   };
   const [formData, setFormData] = useState(initialFormData);
 
+  //helper function that checks that the input isn't empty or just filled with spaces (" ")
   const validateExists = (value) => {
     return value && value.trim();
   };
 
-  //Validates that the form is not empty
+  //Validates that the form has input
   const validateForm = (formData) => {
     const errors = {};
 
@@ -37,7 +36,6 @@ function CreateDeck() {
   //1. validating the form
   //2. creating the deck
   //3. sending user to the deck screen of the new deck
-  //Helper function for validateForm to check if anything exists in the input
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -54,8 +52,10 @@ function CreateDeck() {
       return false;
     }
 
+    //creates the new deck
     createDeck(formData)
       .then((deck) => deck.id)
+      //sends user to the deck screen
       .then((deckId) => history.push(`/decks/${deckId}`));
   };
 
@@ -77,6 +77,7 @@ function CreateDeck() {
         submitHandler={submitHandler}
         setFormData={setFormData}
         formData={formData}
+        // if user clicks cancel, take them back to the home screen
         pageIfCancel={"/"}
       />
     </div>

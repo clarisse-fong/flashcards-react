@@ -2,14 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 
-// CREATE DECK SCREEN
-// path is "/decks/new"
+//DECK FORM: Provides a form to either create or edit deck
+//child component of CREATE DECK SCREEN and EDIT DECK SCREEN
 
-//TODO: ✅Create a submit handler
-//TODO: ✅Call function in index.js in APIs to create new deck
-//TODO:✅Direct User to the deck screen of their new study deck
-
-//TODO: ✅Create useState varialbe to keep track of the form input
 function DeckForm({ submitHandler, formData, setFormData, pageIfCancel }) {
   //handles the input by keeping track of the input in a useState variable
   const handleInput = (event) => {

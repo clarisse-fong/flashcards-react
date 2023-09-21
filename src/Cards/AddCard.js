@@ -57,9 +57,9 @@ function AddCard() {
   //2. form is cleared
   //3. process for adding cards restarted
   const saveHandler = () => {
-    //informs user if there are fields that don't have the required info
     const errors = validateForm(formData);
 
+    //informs user if there are fields that don't have the required info
     if (Object.keys(errors).length > 0) {
       //Displays any errors
       Object.keys(errors).forEach((key) => {
@@ -69,7 +69,10 @@ function AddCard() {
       return false;
     }
 
+    //creates card
     createCard(deckId, formData);
+
+    //resets the process for adding cards
     setFormData(initialFormData);
   };
 

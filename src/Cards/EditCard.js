@@ -42,7 +42,7 @@ function EditCard() {
   };
 
   //if user selects submit btn(blue):
-  //1. update content
+  //1. updates card content
   //2. take user back to deck screen
   const submitHandler = (event) => {
     event.preventDefault();

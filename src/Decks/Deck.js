@@ -4,7 +4,7 @@ import {
   useHistory,
   useParams,
 } from "react-router-dom/cjs/react-router-dom";
-import { deleteCard, deleteDeck, readDeck } from "../utils/api";
+import { deleteDeck, readDeck } from "../utils/api";
 import { listDecks } from "../utils/api";
 import CardList from "../Cards/CardList";
 
@@ -16,13 +16,15 @@ function Deck() {
   const [currDeck, setCurrDeck] = useState([]);
   const history = useHistory();
 
-  //
+  //uses readDeck function to pull up the currDeck using deckID
   const loadDeck = () => {
     readDeck(deckId).then((data) => setCurrDeck(data));
   };
-
   useEffect(loadDeck, []);
 
+  //if user selects delete, asks if the user is sure they want to delete the deck
+  //if yes, delete the deck and return them to the home page
+  //else, do nothing
   const deleteHandle = () => {
     const isDeleteConfirmed = window.confirm(
       "Delete this deck? \n\nYou will not be able to recover it."

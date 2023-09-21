@@ -10,10 +10,6 @@ import { readDeck, updateDeck } from "../utils/api";
 //EDIT DECK SCREEN: allows user to modify info on an existing deck
 //path is "/decks/:deckId/edit"
 
-//TODO: access the deck object and set it as the initial form info
-//TODO: write and pass in onSubmit function: updates deck array, takes you back to deck screen and shows edits after
-//TODO: wirte and pass in a cancel function: takes user back to the deck screen
-
 function EditDeck() {
   const { deckId } = useParams();
   const [deckToEdit, setDeckToEdit] = useState([]);
@@ -36,6 +32,7 @@ function EditDeck() {
 
   useEffect(loadDeckToEdit, []);
 
+  // onSubmit function: updates deck array, takes user back to deck screen and shows new edits
   const submitHandler = (event) => {
     event.preventDefault();
     updateDeck({
@@ -66,6 +63,7 @@ function EditDeck() {
           formData={formData}
           setFormData={setFormData}
           submitHandler={submitHandler}
+          // if users cancels, takes user back to the deck screen
           pageIfCancel={`/decks/${deckId}`}
         />
       </div>
