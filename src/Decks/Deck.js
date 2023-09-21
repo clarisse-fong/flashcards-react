@@ -21,21 +21,14 @@ function Deck() {
     readDeck(deckId).then((data) => setCurrDeck(data));
   };
 
-  const doListDecks = () => {
-    setListOfDecks([]);
-    listDecks().then((data) => setListOfDecks(data));
-  };
   useEffect(loadDeck, []);
-  useEffect(doListDecks, []);
 
   const deleteHandle = () => {
     const isDeleteConfirmed = window.confirm(
       "Delete this deck? \n\nYou will not be able to recover it."
     );
     if (isDeleteConfirmed) {
-      deleteDeck(deckId)
-        .then(() => doListDecks())
-        .then(() => history.push("/"));
+      deleteDeck(deckId).then(() => history.push("/"));
       //TODO: figure out how to make it remove the deck first before going back to the home page.
     }
   };
