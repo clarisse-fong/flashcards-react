@@ -15,8 +15,8 @@ function Deck() {
   const { deckId } = useParams();
   const [currDeck, setCurrDeck] = useState([]);
   const history = useHistory();
-  const [listOfDecks, setListOfDecks] = useState([]);
 
+  //
   const loadDeck = () => {
     readDeck(deckId).then((data) => setCurrDeck(data));
   };
@@ -29,7 +29,6 @@ function Deck() {
     );
     if (isDeleteConfirmed) {
       deleteDeck(deckId).then(() => history.push("/"));
-      //TODO: figure out how to make it remove the deck first before going back to the home page.
     }
   };
 
