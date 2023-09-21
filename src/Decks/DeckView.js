@@ -2,11 +2,8 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import DeckScreen from "./Deck";
 
-//✅TODO: Create a View button: directs user to the DECK SCREEN
-//✅TODO: Implement button functionality
-
-//✅TODO: Create a a Study button: directs user to the STUDY SCREEN
-//✅TODO: Implement button functionality
+//DECKVIEW: show the info for each deck in the deck list
+//Child component of DeckList
 
 //✅TODO: Create a delete button: creates
 //TODO: Implement button functionality
@@ -25,16 +22,14 @@ function DeckView({ deck, deleteHandle }) {
         <h5 className="card-title">{deck.name}</h5>
         <p className="card-text">{deck.cards.length} cards</p>
         <p className="card-text">{deck.description}</p>
-
+        {/* View button: directs user to the DECK SCREEN */}
         <Link to={`/decks/${deck.id}`} className="btn btn-secondary">
           View
         </Link>
+        {/* Study button: directs user to the STUDY SCREEN */}
         <Link to={`/decks/${deck.id}/study`} className="btn btn-primary">
           Study
         </Link>
-        <Route path="/decks/deckId">
-          <DeckScreen />
-        </Route>
         <button
           className="btn btn-danger"
           onClick={() => deleteHandle(deck.id)}
