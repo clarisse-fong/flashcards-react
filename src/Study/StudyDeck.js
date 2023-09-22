@@ -6,16 +6,6 @@ import NotEnoughCards from "./NotEnoughCards";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // STUDY SCREEN
 // path is "/decks/:deckId/study"
-
-//TODO: ✅ If 2 or less cards, load different component it's not enough
-
-//TODO: ✅ Access the name of the deck based on the ID
-
-//TODO: ✅ Create a CardView Component
-
-//TODO: ✅ Handle Flip Function
-//TODO: ✅ Handle Next action
-//TODO: ✅ Handle Last Card
 function Study() {
   const { deckId } = useParams();
   const [deckToStudy, setDeckToStudy] = useState([]);
@@ -32,10 +22,10 @@ function Study() {
   };
   useEffect(useReadDeck, []);
 
+  //checks if its the last card in the deck
+  //if so, a dialog will pop up to ask if the user would like to restart studying the deck or return to the home page.
+  //if not, makes the next card in the deck appear
   const handleNext = () => {
-    //checks if its the last card in the deck
-    //if so, a dialog will pop up to ask if the user would like to restart studying the deck or return to the home page.
-    //if not, makes the next card in the deck appear
     if (currCardIndex === deckToStudy.cards.length - 1) {
       const restart = window.confirm(
         "Restart cards \n\nClick 'cancel' to return to the home page."
@@ -52,6 +42,7 @@ function Study() {
     }
   };
 
+  //flips card from front to back or vice versa
   const handleFlip = () => {
     setisFront(!isFront);
   };

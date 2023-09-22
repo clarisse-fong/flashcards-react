@@ -11,11 +11,7 @@ import AddCard from "../Cards/AddCard";
 import EditCard from "../Cards/EditCard";
 import { listDecks } from "../utils/api";
 
-// HOME SCREEN: first page the user sees
-// path is "/"
-// TODO: Create a "Create Deck Button".
-// When you click this button it will bring the user to the Create Deck Screen.
-//TODO: Create a Route to the Create Deck Sceen using path "/decks/new"
+//LAYOUT: this page defines all the paths for all the pages throughout the app
 
 function Layout() {
   const [listOfDecks, setListOfDecks] = useState([]);
@@ -28,11 +24,7 @@ function Layout() {
   return (
     <>
       <Header />
-      <div className="container">
-        {/* TODO: Implement the screen starting here */}
-
-        {/* <NotFound /> */}
-      </div>
+      <div className="container"></div>
       <Switch>
         <Route exact path="/">
           <Home />

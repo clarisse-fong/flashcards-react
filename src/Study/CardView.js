@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-//✅TODO: Create Heading (e.g. Card 1 of 3)
-//✅TODO: List Description
-
 function CardView({
   card,
   currCardIndex,
