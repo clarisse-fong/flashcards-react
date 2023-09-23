@@ -15,6 +15,7 @@ import { listDecks } from "../utils/api";
 
 function Layout() {
   const [listOfDecks, setListOfDecks] = useState([]);
+  const [currDeck, setCurrDeck] = useState([]);
 
   const doListDecks = () => {
     setListOfDecks([]);
@@ -30,22 +31,22 @@ function Layout() {
           <Home />
         </Route>
         <Route exact path="/decks/:deckId/study">
-          <Study />
+          <Study currDeck={currDeck} setCurrDeck={setCurrDeck} />
         </Route>
         <Route exact path="/decks/new">
           <CreateDeck />
         </Route>
         <Route exact path="/decks/:deckId">
-          <Deck />
+          <Deck currDeck={currDeck} setCurrDeck={setCurrDeck} />
         </Route>
         <Route exact path="/decks/:deckId/edit">
-          <EditDeck />
+          <EditDeck currDeck={currDeck} setCurrDeck={setCurrDeck} />
         </Route>
         <Route exact path="/decks/:deckId/cards/new">
-          <AddCard />
+          <AddCard currDeck={currDeck} setCurrDeck={setCurrDeck} />
         </Route>
         <Route exact path="/decks/:deckId/cards/:cardId/edit">
-          <EditCard />
+          <EditCard currDeck={currDeck} setCurrDeck={setCurrDeck} />
         </Route>
         <Route>
           <NotFound />

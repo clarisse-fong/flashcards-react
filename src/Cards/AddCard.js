@@ -10,9 +10,8 @@ import {
 //ADD CARD SCREEN: allows user to add a new card
 //path is "/decks/:deckId/cards/new"
 
-function AddCard() {
+function AddCard({ currDeck, setCurrDeck }) {
   const { deckId } = useParams();
-  const [currDeck, setCurrDeck] = useState([]);
   const initialFormData = {
     front: "",
     back: "",

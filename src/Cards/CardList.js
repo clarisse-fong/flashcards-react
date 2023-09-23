@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CardView from "./CardView";
 
 //child component of Deck screen that lists the card of a given deck
-function CardList({ deck, loadDeck }) {
+function CardList({ deck, currDeck, loadDeck }) {
   const renderCards = () => {
     return (
       <div>

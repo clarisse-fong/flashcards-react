@@ -6,27 +6,27 @@ import NotEnoughCards from "./NotEnoughCards";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 // STUDY SCREEN
 // path is "/decks/:deckId/study"
-function Study() {
+function Study({ currDeck, setCurrDeck }) {
   const { deckId } = useParams();
-  const [deckToStudy, setDeckToStudy] = useState([]);
   const [currCardIndex, setCurrCardIndex] = useState(0);
   const [isFront, setisFront] = useState(true);
   const history = useHistory();
 
   const useReadDeck = () => {
-    if (deckToStudy) {
+    if (currDeck) {
       readDeck(deckId).then((data) => {
-        setDeckToStudy(data);
+        setCurrDeck(data);
       });
     }
   };
+
   useEffect(useReadDeck, []);
 
   //checks if its the last card in the deck
   //if so, a dialog will pop up to ask if the user would like to restart studying the deck or return to the home page.
   //if not, makes the next card in the deck appear
   const handleNext = () => {
-    if (currCardIndex === deckToStudy.cards.length - 1) {
+    if (currCardIndex === currDeck.cards.length - 1) {
       const restart = window.confirm(
         "Restart cards \n\nClick 'cancel' to return to the home page."
       );
@@ -48,15 +48,15 @@ function Study() {
   };
 
   const renderCard = () => {
-    const deckLength = deckToStudy.cards.length;
+    const deckLength = currDeck.cards.length;
 
     //checks if there are at least 2 cards
     const display =
-      deckToStudy.cards.length <= 2 ? (
-        <NotEnoughCards deckLength={deckLength} />
+      currDeck.cards.length <= 2 ? (
+        <NotEnoughCards deck={currDeck} deckLength={deckLength} />
       ) : (
         <CardView
-          card={deckToStudy.cards[currCardIndex]}
+          card={currDeck.cards[currCardIndex]}
           currCardIndex={currCardIndex}
           deckLength={deckLength}
           handleNext={handleNext}
@@ -73,20 +73,20 @@ function Study() {
               <Link to="/">Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={`/decks/${deckToStudy.id}`}>{deckToStudy.name}</Link>
+              <Link to={`/decks/${currDeck.id}`}>{currDeck.name}</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               Study
             </li>
           </ol>
         </nav>
-        <h1>Study: {deckToStudy.name}</h1>
+        <h1>Study: {currDeck.name}</h1>
         {display}
       </div>
     );
   };
 
-  if (deckToStudy && deckToStudy.cards) {
+  if (currDeck && currDeck.cards) {
     return renderCard();
   } else {
     return "Loading...";

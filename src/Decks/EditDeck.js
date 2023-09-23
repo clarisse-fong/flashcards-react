@@ -10,16 +10,15 @@ import { readDeck, updateDeck } from "../utils/api";
 //EDIT DECK SCREEN: allows user to modify info on an existing deck
 //path is "/decks/:deckId/edit"
 
-function EditDeck() {
+function EditDeck({ currDeck, setCurrDeck }) {
   const { deckId } = useParams();
-  const [deckToEdit, setDeckToEdit] = useState([]);
   const [formData, setFormData] = useState({});
   const history = useHistory();
 
-  const loadDeckToEdit = () => {
+  const loadcurrDeck = () => {
     readDeck(deckId)
       .then((deck) => {
-        setDeckToEdit(deck);
+        setCurrDeck(deck);
         return deck;
       })
       .then((deck) => {
@@ -30,19 +29,19 @@ function EditDeck() {
       });
   };
 
-  useEffect(loadDeckToEdit, []);
+  useEffect(loadcurrDeck, []);
 
   // onSubmit function: updates deck array, takes user back to deck screen and shows new edits
   const submitHandler = (event) => {
     event.preventDefault();
     updateDeck({
-      ...deckToEdit,
+      ...currDeck,
       name: formData.name,
       description: formData.description,
     }).then(() => history.push(`/decks/${deckId}`));
   };
 
-  if (deckToEdit.id) {
+  if (currDeck.id) {
     return (
       <div>
         <nav aria-label="breadcrumb">
@@ -51,7 +50,7 @@ function EditDeck() {
               <Link to="/">Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link to={`/decks/${deckId}`}>{deckToEdit.name}</Link>
+              <Link to={`/decks/${deckId}`}>{currDeck.name}</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               Data

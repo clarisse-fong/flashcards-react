@@ -11,9 +11,8 @@ import CardList from "../Cards/CardList";
 // DECK SCREEN: displays all the info about a deck
 // path is "/decks/:deckId"
 
-function Deck() {
+function Deck({ currDeck, setCurrDeck }) {
   const { deckId } = useParams();
-  const [currDeck, setCurrDeck] = useState([]);
   const history = useHistory();
 
   //uses readDeck function to pull up the currDeck using deckID

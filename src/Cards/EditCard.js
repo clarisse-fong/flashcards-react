@@ -9,7 +9,7 @@ import { readCard, readDeck, updateCard } from "../utils/api";
 
 //EDIT CARD SCREEN: allows user to edit an existing card
 //path: "/decks/:deckId/cards/:cardId/edit"
-function EditCard() {
+function EditCard({ currDeck, setCurrDeck }) {
   const { deckId, cardId } = useParams();
   const history = useHistory();
   const initialFormData = {
@@ -18,7 +18,6 @@ function EditCard() {
   };
 
   const [formData, setFormData] = useState(initialFormData);
-  const [currDeck, setCurrDeck] = useState([]);
 
   const loadDeck = () => {
     readDeck(deckId).then((deck) => setCurrDeck(deck));
